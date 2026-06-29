@@ -1,0 +1,4 @@
+check,count,pct
+within_train_exact_dups,2645753,36.948
+within_test_exact_dups,721916,44.723
+distinct_rows_in_both_splits,461,0.052

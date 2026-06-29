@@ -1,0 +1,46 @@
+feature,max_ovr_auc,mean_ovr_auc,disposition
+IAT,0.9994,0.8095,FLAG
+fin_flag_number,0.9986,0.5669,FLAG
+ack_count,0.9972,0.5764,FLAG
+psh_flag_number,0.9916,0.6687,FLAG
+fin_count,0.9912,0.6837,FLAG
+Number,0.9906,0.6919,FLAG
+Weight,0.9906,0.6919,FLAG
+syn_flag_number,0.9866,0.6958,FLAG
+Variance,0.9848,0.73,FLAG
+ack_flag_number,0.9785,0.7388,FLAG
+ICMP,0.9671,0.6816,FLAG
+Magnitue,0.9631,0.8191,FLAG
+AVG,0.963,0.8186,FLAG
+Protocol Type,0.9626,0.8037,FLAG
+Tot size,0.9624,0.8186,FLAG
+syn_count,0.9612,0.7,FLAG
+Min,0.9608,0.8195,FLAG
+Tot sum,0.9556,0.8184,FLAG
+UDP,0.9493,0.6887,watchlist
+rst_count,0.9492,0.7692,watchlist
+Max,0.9469,0.7985,watchlist
+Header_Length,0.9452,0.7899,watchlist
+rst_flag_number,0.944,0.6437,watchlist
+Srate,0.941,0.7457,watchlist
+Rate,0.941,0.7457,watchlist
+Radius,0.9249,0.7089,watchlist
+Std,0.9246,0.7087,watchlist
+Covariance,0.9235,0.7072,watchlist
+TCP,0.8444,0.7565,ok
+HTTPS,0.8098,0.5295,ok
+Duration,0.8075,0.5807,ok
+LLC,0.722,0.5182,ok
+IPv,0.722,0.5182,ok
+ARP,0.722,0.5182,ok
+DNS,0.5128,0.4998,ok
+HTTP,0.5098,0.5003,ok
+IRC,0.5062,0.5002,ok
+Telnet,0.505,0.5001,ok
+SSH,0.5048,0.4996,ok
+ece_flag_number,0.5048,0.4995,ok
+cwr_flag_number,0.5048,0.4995,ok
+SMTP,0.5048,0.4996,ok
+DHCP,0.5001,0.4993,ok
+Drate,0.5,0.4992,ok
+IGMP,0.5,0.4992,ok
