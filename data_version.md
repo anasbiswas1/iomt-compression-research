@@ -1,22 +1,22 @@
 # data_version.md — CICIoMT2024 (canonical record)
 
 **Date:** 2026-06-29
-**Source:** Kaggle `limamateus/cic-iomt-2024-wifi-mqtt` (per-attack WiFi/MQTT CSVs, cited
-across the published CICIoMT2024 literature; mirrors CIC's official csv/ release).
-**Files:** 2 per-attack CSVs grouped by CIC's official file-level 80/20 train/test split.
-**Rejected:** `amineipad/cic-iomt-dataset-2024` (2 merged feature-only files, random split,
-no per-attack structure). CIC direct site is a registration form (no open directory).
+**Source:** Kaggle `limamateus/cic-iomt-2024-wifi-mqtt`, parquet (train+test).
+**Nature:** CIC's official file-level 80/20 WiFi/MQTT split, concatenated across attacks.
+train parquet = official 80%, test parquet = official 20%. 51 classes in `label`.
+**Rejected:** `amineipad/...` (same merged data, CSV only); CIC direct site = registration form.
+**Per-attack files:** not used (only behind CIC form); label column supplies attack class.
 
-## Split-protocol feasibility (settled at download)
-- Random re-split: YES
-- Official CIC train/test split (file-level 80/20; the literature baseline to audit): YES
+## Split-protocol feasibility (settled)
+- Official CIC split (train vs test parquet; literature baseline): YES
+- Random re-split (re-pool then split): YES
 - Leakage-remediated split: YES
-- Attack-family-held-out (headline shift axis, replaces device-held-out): YES
-- Device-held-out: PCAP-gated (no MAC) -> DEFERRED
-- Temporal: PCAP-gated (no timestamp) -> DEFERRED
-- Cross-protocol w/ Bluetooth: Bluetooth has no CSVs, diff schema -> DEFERRED
+- Attack-family-held-out (headline shift axis): YES (via label families)
+- Device-held-out: PCAP-gated -> DEFERRED
+- Temporal: PCAP-gated -> DEFERRED
+- Cross-protocol w/ Bluetooth: no Bluetooth CSVs -> DEFERRED
 
 ## Notes
-- Labels encoded by filename (per-attack CSVs).
-- Rows are window-averaged (window 10 or 100 by attack type) -> matters for near-duplicate audit.
-- Canonical frozen-dataset hashing happens end of Phase 1 after Category-A remediation.
+- Execution-level attack-batch identity unavailable (merged); type-level via label only.
+- Rows window-averaged (window 10 or 100 by attack) -> matters for near-duplicate audit.
+- Frozen-dataset hashing at end of Phase 1 after Category-A remediation.
