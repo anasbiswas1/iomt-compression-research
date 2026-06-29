@@ -1,0 +1,4 @@
+protocol,acc,bal_acc,macro_f1,weighted_f1
+official_dedup,0.9747,0.8564,0.8489,0.9748
+random_withdup,0.9594,0.8213,0.835,0.9594
+random_dedup,0.4144,0.2669,0.2738,0.4059
