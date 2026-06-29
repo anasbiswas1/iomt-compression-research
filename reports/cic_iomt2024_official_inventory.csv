@@ -1,0 +1,3 @@
+split,file,rows,bytes
+test,CIC_IoMT_2024_WiFi_MQTT_test.csv,1614182,377665848
+train,CIC_IoMT_2024_WiFi_MQTT_train.csv,7160831,1694603977
