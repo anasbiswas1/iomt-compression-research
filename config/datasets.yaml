@@ -1,0 +1,41 @@
+# ============================================================================
+# Dataset registry for the IoMT compression study.
+# Roles match the research plan (v1.7): CICIoMT2024 primary; three supporting.
+# Only CICIoMT2024 is wired for download at this stage (Phase 0/1).
+# ============================================================================
+
+cic_iomt2024:
+  role: primary
+  full_name: "CICIoMT2024 (Canadian Institute for Cybersecurity, UNB)"
+  official_url: "https://www.unb.ca/cic/datasets/iomt-dataset-2024.html"
+  # Kaggle mirror used for programmatic download (Kaggle API).
+  # Verify the slug is still live before relying on it; swap if CIC direct is preferred.
+  kaggle_slug: "amineipad/cic-iomt-dataset-2024"
+  formats: [csv, pcap]            # we use CSV flow-feature files
+  approx_instances: 4893197
+  approx_features: 45             # WiFi/MQTT; Bluetooth subset has 27
+  n_classes: 17                   # label encoded by CSV filename
+  attack_categories: [DDoS, DoS, Recon, MQTT, Spoofing]
+  rare_classes_note: "Spoofing ~17.8k vs Benign ~230k -> rare-class calibration showcase"
+  metadata_risk: >
+    CSV files are aggregated flow statistics labelled by filename. Device MAC and
+    per-flow timestamps are likely ABSENT. Device-held-out and temporal splits
+    depend on this metadata; the inventory cell in 01_download_data verifies it
+    on day one. If absent, those two protocols need PCAP re-extraction or descope.
+
+# --- Supporting datasets (NOT downloaded yet; wired in later phases) ---
+iomt_trafficdata:
+  role: cross_dataset_confirmation
+  full_name: "IoMT-TrafficData (Areia et al. 2024, IEEE Access)"
+  status: deferred_to_phase4
+
+wustl_ehms_2020:
+  role: small_data_stress_test
+  full_name: "WUSTL-EHMS-2020 (network flows + patient biometrics)"
+  status: deferred_to_phase4
+
+ciciot2023:
+  role: non_medical_control
+  full_name: "CICIoT2023 (same CIC feature family)"
+  status: deferred_to_phase4
+  note: "Reuse drift-paper loaders."

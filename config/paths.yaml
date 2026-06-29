@@ -1,0 +1,51 @@
+# ============================================================================
+# IoMT Compression Trustworthiness  -  canonical paths
+# Nothing is hardcoded in notebooks. Every path resolves from this file via
+# src/iomtc_config.py. Code/CSVs/figures -> GitHub. Datasets/binaries -> Drive.
+# ============================================================================
+
+project:
+  name: iomt-compression-research
+  drive_tag: IOMT_Compression_Research
+
+roots:
+  drive_root: /content/drive/MyDrive/IOMT_Compression_Research
+  repo_root:  /content/drive/MyDrive/IOMT_Compression_Research/iomt-compression-research
+
+# Tracked in git (code + artifacts)
+dirs:
+  notebooks: notebooks       # numbered, self-contained .ipynb stages
+  src:       src             # shared .py modules (NOT 'utils/')
+  config:    config          # yaml configs
+  reports:   reports         # result + audit CSVs
+  figures:   figures         # plots
+
+# Gitignored (datasets + model binaries live here, never in git)
+data:
+  root:      data
+  raw:       data/raw
+  interim:   data/interim
+  processed: data/processed
+  cic_iomt2024: data/raw/cic_iomt2024     # CICIoMT2024 download target
+
+# Credentials on Drive, OUTSIDE the repo, gitignored by location
+creds:
+  gitconfig:        /content/drive/MyDrive/IOMT_Compression_Research/.gitconfig
+  git_credentials:  /content/drive/MyDrive/IOMT_Compression_Research/.git-credentials
+  kaggle_json:      /content/drive/MyDrive/IOMT_Compression_Research/kaggle.json
+
+git:
+  remote: https://github.com/anasbiswas1/iomt-compression-research.git
+  user_name: Md Anas Biswas
+  user_email: anasbiswas@gmail.com
+  handle: anasbiswas1
+  branch: main
+
+# Constants the methodology locks (imported, never re-typed in notebooks)
+constants:
+  canonical_seed: 42
+  bootstrap_B: 1000
+  calib_platt_threshold: 30     # n_calib < 30 -> Platt (sigmoid); else isotonic  [Option D]
+  device_folds: 3               # independent device-held-out folds
+  p2_ami_floor: 0.30            # transfer-fragile inclusion floor (sensitivity at 0.20/0.40)
+  cat_a_auc_flag: 0.95          # label-encoding flag threshold (watchlist 0.90-0.95)

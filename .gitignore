@@ -1,0 +1,33 @@
+# Datasets and model binaries live on Drive, never in git
+data/
+*.pcap
+*.pcapng
+*.h5
+*.pt
+*.pth
+*.onnx
+*.ckpt
+*.joblib
+*.pkl
+
+# Credentials (also kept outside the repo on Drive)
+.git-credentials
+.gitconfig
+kaggle.json
+*.pem
+
+# Python
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+.venv/
+env/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Large/raw exports that should be regenerated, not tracked
+*.zip
+*.tar
+*.tar.gz
