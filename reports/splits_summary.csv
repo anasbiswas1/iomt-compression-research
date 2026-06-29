@@ -1,0 +1,11 @@
+protocol,partition,rows
+official,train,7160831
+official,test,1614182
+random,train,7020010
+random,test,1755003
+family_heldout[Recon],train_seen,6914888
+family_heldout[Recon],test_inliers,1728723
+family_heldout[Recon],test_heldout,131402
+type_heldout[DDoS-SYN],train_seen,6240523
+type_heldout[DDoS-SYN],test_inliers,1560131
+type_heldout[DDoS-SYN],test_heldout,974359
