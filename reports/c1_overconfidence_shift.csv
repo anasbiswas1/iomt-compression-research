@@ -1,0 +1,4 @@
+held_out,n,conf_seen,conf_heldout,flagged_attack
+Recon,114494,0.9998,1.0,0.7108
+Spoofing,17754,0.9993,0.9004,0.8317
+MQTT,326653,0.9991,0.999,0.9919

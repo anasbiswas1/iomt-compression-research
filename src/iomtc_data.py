@@ -256,6 +256,43 @@ def row_hashes(df: pd.DataFrame, cols: list[str]) -> pd.Series:
     return arr.map(lambda s: hashlib.md5(s.encode()).hexdigest())
 
 
+# ---------------------------------------------------------------------------
+# Robust extreme-value clipping (REQUIRED for this dataset)
+# CICIoMT2024 has features up to ~1.7e8 (IAT) that destabilize tree binning and
+# made an early pooled split collapse to 0.41. Clip percentiles are fit on the
+# TRAIN side only (the §7.6 pipeline rule) and applied to every split.
+# ---------------------------------------------------------------------------
+def fit_clip(train_df: pd.DataFrame, cols: list[str], lo: float = 0.1, hi: float = 99.9):
+    """Return (low_bounds, high_bounds) per column, computed on the train side."""
+    X = train_df[cols].replace([np.inf, -np.inf], np.nan).to_numpy(dtype=np.float64)
+    return np.nanpercentile(X, lo, axis=0), np.nanpercentile(X, hi, axis=0)
+
+
+def apply_clip(df: pd.DataFrame, cols: list[str], los, his) -> np.ndarray:
+    """Clip a frame's features to the fitted bounds; inf/nan -> low bound."""
+    X = df[cols].replace([np.inf, -np.inf], np.nan).to_numpy(dtype=np.float64)
+    X = np.clip(X, los, his)
+    nanpos = np.where(np.isnan(X))
+    if len(nanpos[0]):
+        X[nanpos] = np.take(los, nanpos[1])
+    return X
+
+
+# Deterministic LightGBM params (reproducible across Colab sessions).
+# deterministic + force_col_wise + fixed threads removes the cross-session
+# variance that made identical runs disagree (0.97 vs 0.89).
+LGBM_PARAMS = dict(
+    n_estimators=300, learning_rate=0.05, num_leaves=63,
+    subsample=0.8, colsample_bytree=0.8,
+    deterministic=True, force_col_wise=True, num_threads=2, verbose=-1,
+)
+
+# Canonical family order and mappings
+FAMILY_ORDER = ["Benign", "DDoS", "DoS", "MQTT", "Recon", "Spoofing"]
+FAM2I = {f: i for i, f in enumerate(FAMILY_ORDER)}
+BIN2I = {f: (0 if f == "Benign" else 1) for f in FAMILY_ORDER}
+
+
 if __name__ == "__main__":
     print("iomtc_data self-check (synthetic):")
     rng = np.random.default_rng(0)

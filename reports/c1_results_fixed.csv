@@ -1,0 +1,4 @@
+config,acc,bal_acc,macro_f1
+official_dedup,0.9971,0.9499,0.9369
+random_dedup,0.9957,0.9506,0.9543
+random_withdup,0.9968,0.9436,0.9462
